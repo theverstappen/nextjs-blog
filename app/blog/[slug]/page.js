@@ -28,21 +28,3 @@ export async function getBlogDetail(slug) {
 
   return { frontmatter, markdown } 
 }
-export async function generateStaticParams() {
-    const filesInProjects = fs.readdirSync('./content/blogs')
-
-    // Getting the filenames excluding .md extension
-    // and returning an array containing slug (the filename) as params for every route
-    // It looks like this
-    // paths = [
-    //   { params: { slug: 'my-first-blog' }},
-    //   { params: { slug: 'how-to-train-a-dragon' }},
-    //   { params: { slug: 'how-to-catch-a-pokemon' }},
-    // ]
-    const paths = filesInProjects.map(file => {
-      const filename = file.slice(0, file.indexOf('.'))
-      return { params: { slug: filename }}
-    })
-
-    return paths
-}
