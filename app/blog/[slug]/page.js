@@ -2,7 +2,8 @@ import fs from 'fs'
 import ReactMarkdown from 'react-markdown'
 import matter from 'gray-matter'
 
-export default async function Page({ params }) {
+export default async function Blog({ params }) {
+  console.log('params', params)
   const { content, data} = await getBlogDetail(params.slug);  
 
   return (
@@ -18,6 +19,7 @@ export default async function Page({ params }) {
 }
 
 export async function getBlogDetail(slug) {
+  console.log('slug', slug)
   const post = matter(fs.readFileSync(`./content/blogs/${slug}.md`, 'utf8'))
   console.log('blog post', post)
   return  post
